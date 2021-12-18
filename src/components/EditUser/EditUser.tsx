@@ -1,20 +1,44 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { IUser } from '../types/data'
 
-const EditUser = ({
-  items, editFullName, setEditFullName, editEmail, setEditEmail, editBirthday, setEditBirthday, editSex, setEditSex,  handleEdit
+interface IEditUser {
+  users: IUser[];
+  editFullName: string;
+  setEditFullName: (fullName: string) => void;
+  editEmail: string;
+  setEditEmail: (email: string) => void;
+  editBirthday: string;
+  setEditBirthday: (birthday: string) => void;
+  editSex: string;
+  setEditSex: (sex: string) => void;
+  handleEdit: (id: number) => void;
+}
+
+const EditUser: React.FC<IEditUser> = ({
+  users,
+  editFullName,
+  setEditFullName,
+  editEmail,
+  setEditEmail,
+  editBirthday,
+  setEditBirthday,
+  editSex,
+  setEditSex,
+  handleEdit
 }) => {
   const { id } = useParams();
-  const item = items.find(item => (item.id).toString() === id);
+  const user = users.find(user => (user.id).toString() === id);
+
   useEffect(() => {
-    if (item) {
-      setEditFullName(item.fullName);
-      setEditEmail(item.email);
-      setEditBirthday(item.birthday);
-      setEditSex(item.sex);
+    if (user) {
+      setEditFullName(user.fullName);
+      setEditEmail(user.email);
+      setEditBirthday(user.birthday);
+      setEditSex(user.sex);
     }
 
-  }, [item, setEditFullName, setEditEmail, setEditBirthday, setEditSex])
+  }, [user, setEditFullName, setEditEmail, setEditBirthday, setEditSex])
   return (
     <div className='box-container'>
     {editFullName &&
@@ -54,7 +78,7 @@ const EditUser = ({
               id="radio-1"
               type="radio"
               name="radio"
-              value={editSex = 'male'}
+              value={editSex}
               onChange={(e) => setEditSex(e.target.value)}
             />
             <label htmlFor="radio-1">male</label>
@@ -62,18 +86,17 @@ const EditUser = ({
           
           <div className="form_radio">
             <input
-              
               id="radio-2"
               type="radio"
               name="radio"
-              value={editSex = 'female'}
+              value={editSex}
               onChange={(e) => setEditSex(e.target.value)}
             />
             <label htmlFor="radio-2">female</label>
           </div>
           <div className='button-wrap'>
         <button
-          onClick={() => handleEdit(item.id)}
+          onClick={() => handleEdit(Number(user?.id))}
           type='submit'
           aria-label='Edit user'
         >

@@ -1,16 +1,22 @@
 import {Link} from 'react-router-dom';
-import './item.css';
+import './UserItem.css';
 import Modal from '../modal/modal';
 import { useState } from 'react';
+import { IUser } from '../types/data'
 
-const Item = ({item, handleDelete }) => {
+interface IUserItem extends IUser  {
+  deleteUser: (id: number) => void;
+}
+
+const UserItem: React.FC<IUserItem> = (user) => {
+  const { id, fullName, email, birthday, sex, deleteUser } = user;
   const [modalActive, setModalActive] = useState(false);
   return (
     <tr>
-      <td>{item.fullName}</td>
-      <td>{item.email}</td>
-      <td>{item.birthday}</td>
-      <td>{item.sex}</td>
+      <td>{fullName}</td>
+      <td>{email}</td>
+      <td>{birthday}</td>
+      <td>{sex}</td>
       <td>
         <div className='button-wrap'>
           
@@ -21,14 +27,14 @@ const Item = ({item, handleDelete }) => {
             <div className='delete-info'>
             <p>Do you go to delete a user?</p>
               <div className='button-wrap'>
-                <button onClick={() => handleDelete(item.id)} aria-label={`Delete ${item.item}`}>Yes</button>
+                <button onClick={() => deleteUser(id)}>Yes</button>
                 <button onClick={() => setModalActive(false)}>No</button>
               </div>
             </div>
               
               
             </Modal>
-          <Link to={`/edit/${(item.id).toString()}`}><button className='edit'><i className="fas fa-edit"></i></button></Link>
+          <Link to={`/edit/${(id).toString()}`}><button className='edit'><i className="fas fa-edit"></i></button></Link>
         </div>
         
       </td>
@@ -36,4 +42,4 @@ const Item = ({item, handleDelete }) => {
   )
 }
 
-export default Item;
+export { UserItem };

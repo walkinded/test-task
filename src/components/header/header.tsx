@@ -2,7 +2,11 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import './header.css'
 
-const Header = ({ title }) => {
+interface IHeader {
+  title: string;
+}
+
+const Header: React.FC<IHeader> = ({ title }) => {
   return (
     <header>
       <div className='box-container'>

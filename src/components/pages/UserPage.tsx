@@ -1,8 +1,13 @@
-import ItemList from '../itemList/itemList'
+import {UserList} from '../UserList/UserList'
 import {Link } from 'react-router-dom';
+import { IUser } from '../types/data'
 
-const UserPage = ({items, handleDelete}) => {
+interface IUserPage {
+  users: IUser[];
+  deleteUser: (id: number) => void;
+}
 
+const UserPage: React.FC<IUserPage> = ({users, deleteUser}) => { 
   return (
     <section>
       
@@ -10,12 +15,9 @@ const UserPage = ({items, handleDelete}) => {
       <h1 className='main-title'>Users list</h1>
       <Link to={`/add`}><button className="add">ADD USER</button></Link>
   
-      {items.length ? (
+      {users.length ? (
           
-          <ItemList 
-            items={items}
-            handleDelete={handleDelete}
-          />
+          <UserList users={users} deleteUser={deleteUser}/>
         ) : (
           <p>User list is empty</p>
         )}
