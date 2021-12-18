@@ -1,0 +1,14 @@
+footer {
+  padding: 25px 0;
+  background-color: blueviolet;
+  color: #fff;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.footer__wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}

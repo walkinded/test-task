@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Roman Lab",
+      "email": "RLab@gmail.com",
+      "birthday": "1997-05-08",
+      "sex": "male"
+    },
+    {
+      "id": 2,
+      "fullName": "Obi-Van Kenobi",
+      "email": "ObiVan@gmail.com",
+      "birthday": "1967-12-22",
+      "sex": "male"
+    },
+    {
+      "id": 3,
+      "fullName": "John Wick",
+      "email": "JW@gmail.com",
+      "birthday": "1964-09-02",
+      "sex": "male"
+    }
+  ]
+}
